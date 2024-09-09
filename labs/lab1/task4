@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+int main() {
+  float a, b, c, x;
+
+  printf("Введите a: ");
+  scanf("%f", &a);
+
+  printf("Введите b: ");
+  scanf("%f", &b);
+
+  printf("Введите c: ");
+  scanf("%f", &c);
+
+  if (a == 0) {
+    if (b == c) {
+      printf("x - любое число\n");
+    } else {
+      printf("Решений нет\n");
+    }
+  } else {
+    x = (c - b) / a;
+    printf("x=%.1f\n", x);
+  }
+
+  return 0;
+}
