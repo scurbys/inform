@@ -1,23 +1,26 @@
+
 #include <stdio.h>
-#include <stdlib.h>
 
-#define MAX_LINE_LENGTH 256
-
-int main() {
-    FILE *file1, *file2;
-    char line[MAX_LINE_LENGTH];
-    int sch = 0;
-
-    file1 = fopen("text.txt", "r");
-  
-    file2 = fopen("text1.txt", "w");
- 
-    while (fgets(line, sizeof(line), file1) != NULL && sch < 3) {
-        fputs(line, file2);
-        sch++;
-    }
-
-    fclose(file1);
-    fclose(file2);
-    return 0;
+int main(void)
+{
+    char readfile[] = "";
+    char writefile[] = "";
+    char buffer[256];
+    printf("Введите имя файла для чтения: ");
+    scanf("%s", readfile);
+    FILE *file_1 = fopen(readfile, "r");
+    printf("Введите имя файла для записи: ");
+    scanf("%s", writefile);
+    FILE *file_2 = fopen(writefile, "w");
+    if(file_1 && file_2)
+    {
+        for (int i = 0; i < 3; i++) 
+        {
+            fgets(buffer, 256, file_1);
+            fputs(buffer, file_2);
+        }
+        fclose(file_1);
+        fclose(file_2);
+        printf("Данные были записаны\n");
+    } 
 }
