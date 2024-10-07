@@ -1,37 +1,21 @@
 #include <stdio.h>
-#include <stdlib.h>
-int main() {
-    char line[256];
 
-    const char *text = "text.txt";
-    char *str = "привет";
-    printf("Содержимое файла:\n");
-    FILE *file1 = fopen(text, "r");
-    if(file1)
+int main(void)
+{
+    char filename[256];
+    char buffer[256];
+    printf("Введите название файла для записи: ");
+    scanf("%[^\n]%*c", filename);
+    FILE *f = fopen(filename, "r+");
+    if(f)
     {
-        while((fgets(line, 256, file1))!=NULL)
-        {
-            printf("%s", line);
-        }
-        
-        fclose(file1);
-    } 
-    FILE *file2 = fopen(text, "a");
-    fputs(str,file2);
-    printf("\n");
-    fclose(file2);
-    
-    printf("Содержимое файла после записи:\n");
-    FILE *file3 = fopen(text,"r");
-    if(file3)
-    {
-        while((fgets(line, 256, file3))!=NULL)
-        {
-            printf("%s", line);
-        }
-        
-        fclose(file3);
-    } 
-    
+        printf("Введите строку для записи в файл: ");
+        scanf("%[^\n]%*c", buffer);
+        fseek(f, 0, 2);
+        fputs("\n", f);
+        fputs(buffer, f);
+    }
+    fclose(f);
+
     return 0;
 }
