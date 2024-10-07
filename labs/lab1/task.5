@@ -1,22 +1,17 @@
+
 #include <stdio.h>
-#define N 160
- 
-int main() { 
-    FILE *file;
-    char str[N];
-    int i;
-    
-    file = fopen("text.txt", "r");
-    while ((str[i] = fgetc(file)) != EOF) {
-        if (str[i] == '\n') {
-            str[i] = '\0';
-            printf("%s\n", str);
-            i = 0;
+
+int main (int argc, char * argv[]) {
+    char *filename = argv[1];
+    char buffer[256];
+    FILE *fp = fopen(filename, "r");
+    if(fp)
+    {
+        while((fgets(buffer, 256, fp))!=NULL)
+        {
+            printf("%s", buffer);
         }
-        else i++;
+        fclose(fp);
     }
-    str[i] = '\0';
-    printf("%s\n",str);
- 
-    fclose(file);
+    return 0;
 }
